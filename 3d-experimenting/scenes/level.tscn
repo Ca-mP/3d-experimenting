@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://baxofm2rf6eth"]
+
+[ext_resource type="PackedScene" uid="uid://ww1tl4cpwji6" path="res://scenes/player.tscn" id="1_2q6dc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2q6dc"]
+size = Vector2(500, 500)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7c3h"]
+points = PackedVector3Array(-250, 0, -250, -250, 0, 250, 250, 0, -250, 250, 0, 250)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8frs"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2q6dc"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_2q6dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4854834, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.84964424, 0.52735627, 0, -0.52735627, 0.84964424, 0, 4.936203, 4.3612285)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7350093, -0.47530708, 0.4835747, -0.6780571, -0.51522976, 0.5241918, 0, -0.7131771, -0.700984, -0.12913132, 16.056555, -0.19739628)
+light_angular_distance = 90.0
+directional_shadow_mode = 0
+directional_shadow_max_distance = 120.4
+sky_mode = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_2q6dc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_w7c3h")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1851885, 0.5202204, 1.8184316)
+mesh = SubResource("BoxMesh_w8frs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1851885, 0.5202204, 1.8184316)
+shape = SubResource("ConvexPolygonShape3D_2q6dc")
